@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deteksi Lokasi Nomor Telepon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Masukkan Nomor Telepon</h2>
+        <form method="post">
+            <input type="text" name="phone_number" placeholder="Contoh: +6281234567890" required>
+            <button type="submit">Cek Lokasi</button>
+        </form>
+
+        {% if details %}
+        <div class="result">
+            {% if details.error %}
+                <p class="error">{{ details["error"] }}</p>
+            {% else %}
+                <h3>Validasi Nomor</h3>
+                <p><strong>Valid Mobile Number:</strong> {{ details["Valid Mobile Number"] }}</p>
+                <p><strong>Checking Possibility of Number:</strong> {{ details["Possible Number"] }}</p>
+                <h3>Informasi Nomor</h3>
+                <p><strong>Location:</strong> {{ details["Location"] }}</p>
+                <p><strong>Country Code:</strong> {{ details["Country Code"] }}</p>
+                <p><strong>Carrier:</strong> {{ details["Carrier"] }}</p>
+                <p><strong>Time Zones:</strong> {{ details["Time Zones"] }}</p>
+                <p><strong>Number Type:</strong> {{ details["Number Type"] }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
